@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Lexxify OPAQUE — password authentication for React Native, iOS, Android, Web, and Node.js.">
+  <title>Lexxify OPAQUE — Password authentication without giving your server the password</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="site-header shell">
+    <a class="brand" href="#top" aria-label="Lexxify OPAQUE home"><span class="brand-symbol">lx</span><span>Lexxify <span class="brand-detail">/ OPAQUE</span></span></a>
+    <nav class="nav" aria-label="Primary navigation"><a href="#why">Why OPAQUE</a><a href="#architecture">How it works</a><a href="https://docs.opaque.lexxify.com">Docs</a><a href="https://github.com/everlexx/lexxify-opaque">GitHub</a><a href="#commercial">Licensing</a></nav>
+  </header>
+
+  <main id="top">
+    <section class="hero shell">
+      <div class="hero-grid">
+        <div>
+          <p class="eyebrow">OPAQUE for React Native + Web</p>
+          <h1>Password authentication <span class="accent">without giving your server the password.</span></h1>
+          <p class="hero-lede">OPAQUE for React Native, iOS, Android, Web, and Node.js—without maintaining the Rust and native cryptography bridge yourself.</p>
+          <div class="hero-actions"><a class="button button-primary" href="#get-started">Get started <span>↓</span></a><a class="button button-secondary" href="#commercial">Commercial licensing <span>↓</span></a></div>
+          <p class="hero-meta"><strong>Public source</strong> · implementation is inspectable · legal license text and final terms pending.</p>
+        </div>
+        <div class="hero-proof" aria-label="OPAQUE product value">
+          <div class="proof-head"><div><strong>What the application gets</strong><span>A protocol boundary, not a hosted identity product</span></div><span class="proof-live">● source + package</span></div>
+          <div class="proof-card"><span class="proof-tag">client</span><h3>Plaintext password stays off the server</h3><p>Client and server exchange OPAQUE messages; the application owns transport and session creation.</p></div>
+          <div class="proof-card export"><span class="proof-tag">exportKey</span><h3>Client-side material for application encryption</h3><p>The client API returns OPAQUE export material for an application-specific key design.</p></div>
+          <div class="proof-card"><span class="proof-tag">bridge</span><h3>Native integration already built</h3><p>React Native bindings and WASM/Node-compatible operations sit over the Rust integration path.</p></div>
+          <div class="proof-footer"><span>inspectable source</span><span>opaque-ke underneath</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell" id="why">
+      <div class="section-header"><div><div class="section-index">01 / The buying question</div><h2>You chose React Native. You shouldn't need a cryptography team to add OPAQUE.</h2></div><p>Teams that already want OPAQUE should be able to evaluate the protocol without taking ownership of every specialized bridge and platform surface around it.</p></div>
+      <div class="burden-grid">
+        <article class="burden-card before"><div class="burden-label">Build it yourself</div><h3>Own the bridge as well as the auth flow.</h3><p>The integration boundary crosses mobile JavaScript, native code, Rust FFI, WASM, and platform toolchains.</p><div class="stack-list"><span>React Native</span><span>JSI / native bindings → C++ → Rust FFI</span><span>opaque-ke / OPAQUE</span><span>WASM / server surface</span><span>Android + iOS toolchain maintenance</span></div></article>
+        <div class="burden-arrow">specialized integration<br>already maintained →</div>
+        <article class="burden-card after"><div class="burden-label">Use Lexxify OPAQUE</div><h3>Start from the package-level API.</h3><p>Keep the application responsibilities—users, transport, sessions, authorization, and product behavior—while Lexxify owns the protocol/native integration layer.</p><div class="stack-list"><span>React Native client API</span><span>WASM / Node-compatible server API</span><span>Public source to inspect and evaluate</span></div></article>
+      </div>
+    </section>
+
+    <section class="section shell" id="outcomes">
+      <div class="section-header"><div><div class="section-index">02 / Product outcomes</div><h2>What changes for the team integrating it.</h2></div><p>OPAQUE is the protocol. Lexxify’s value is making the surrounding integration surface consumable across the product.</p></div>
+      <div class="value-grid">
+        <article class="value-card"><span class="value-number">01</span><h3>Passwords stay client-side</h3><p>Authenticate without sending the user’s plaintext password to the server. Your application still owns transport, sessions, and authorization.</p></article>
+        <article class="value-card"><span class="value-number">02</span><h3>One integration across your product</h3><p>Current implementation surfaces cover React Native mobile plus Web/WASM and Node.js-compatible JavaScript paths.</p></article>
+        <article class="value-card"><span class="value-number">03</span><h3>Client-only encryption material</h3><p>OPAQUE’s client-side <code>exportKey</code> output can feed an application-specific encryption or E2EE key design. It is not the raw password.</p></article>
+        <article class="value-card"><span class="value-number">04</span><h3>Native complexity already handled</h3><p>The Rust, C++, JSI, Android, iOS, and WASM integration surfaces are behind the package boundary and available for inspection.</p></article>
+      </div>
+      <div class="platform-strip"><span>Supported surfaces</span><div class="platforms"><b>React Native</b><b>Android</b><b>iOS</b><b>Web / WASM</b><b>Node.js</b></div><span>mobile + web</span></div>
+    </section>
+
+    <section class="section shell" id="architecture">
+      <div class="ownership"><div class="ownership-copy"><div class="section-index">03 / Ownership boundary</div><h2>OPAQUE isn’t what you’re paying us to invent. The integration is what you’re avoiding owning.</h2><p><strong><code>opaque-ke</code> provides the underlying OPAQUE protocol implementation.</strong> Lexxify OPAQUE packages the protocol across the native and JavaScript surfaces an application team needs to connect.</p><p>Your application owns users, sessions, transport, authorization policy, and product behavior. Lexxify OPAQUE owns the wrapper/native integration behavior.</p></div><div class="ownership-visual"><div class="ownership-root"><code>opaque-ke</code><br><small>underlying protocol implementation</small></div><div class="ownership-arrow">↓</div><div class="ownership-branches"><div class="ownership-branch">React Native<small>client</small></div><div class="ownership-branch">Android<small>native</small></div><div class="ownership-branch">iOS<small>native</small></div><div class="ownership-branch">Web / WASM<small>JavaScript</small></div><div class="ownership-branch">Node.js<small>server runtime</small></div></div><p class="ownership-note"><strong>Lexxify integration layer</strong> · public source available to inspect.</p></div></div>
+    </section>
+
+    <section class="section-tight shell" id="flow">
+      <div class="section-header"><div><div class="section-index">04 / Protocol shape</div><h2>Register and log in without turning protocol state into product magic.</h2></div><p>The package exposes the real client/server calls. The application carries messages between them and creates its own authenticated session after protocol completion.</p></div>
+      <div class="flow" aria-label="OPAQUE registration and login flow"><div class="flow-step"><span class="flow-dot"></span><strong>Start client</strong><span>request + short-lived state</span></div><div class="flow-step"><span class="flow-dot"></span><strong>Server response</strong><span>WASM/server operation</span></div><div class="flow-step"><span class="flow-dot"></span><strong>Finish client</strong><span>record + exportKey</span></div><div class="flow-step"><span class="flow-dot"></span><strong>Finish server</strong><span>session key</span></div><div class="flow-step"><span class="flow-dot"></span><strong>App session</strong><span>your auth policy</span></div></div>
+      <p class="flow-caption"><strong>Protocol completion is not application authorization.</strong> Transport, record storage, session/token design, and access policy remain with the consuming application.</p>
+    </section>
+
+    <section class="section shell" id="proof">
+      <div class="section-header"><div><div class="section-index">05 / Independent package</div><h2>Built and exercised as an independent package.</h2></div><p>Real integration evidence from a separate React Native consumer and a WASM/Node authentication flow.</p></div>
+      <div class="proof-grid"><article class="proof-tile"><strong>Independent package boundary</strong><span>Verified</span><p>RN and WASM artifacts consumed outside the source workspace.</p></article><article class="proof-tile"><strong>Real WASM auth flow</strong><span>Verified</span><p>Registration, login, bad password, session, and logout.</p></article><article class="proof-tile"><strong>Unrelated RN consumer</strong><span>Verified</span><p>Android external app compiles across four configured ABIs.</p></article><article class="proof-tile pending"><strong>Platform runtime</strong><span>Bounded</span><p>iOS build and physical-device runtime remain pending in this probe.</p></article></div>
+    </section>
+
+    <section class="section shell" id="security"><div class="security-panel"><div><div class="label">Trust and security</div><h2>Built on independently reviewed cryptographic foundations.</h2></div><div><p><strong>Lexxify OPAQUE uses <code>opaque-ke</code>, the underlying Rust OPAQUE implementation, which has undergone independent external security review.</strong></p><p class="security-foot">The implementation is public source and available for inspection. Review the source and security documentation before production deployment.</p></div></div></section>
+
+    <section class="section shell" id="audience">
+      <div class="section-header"><div><div class="section-index">06 / Fit</div><h2>Built for teams where authentication is part of the security architecture.</h2></div><p>These are potential fits, not customer claims.</p></div>
+      <div class="audience-grid"><article class="audience-card"><h3>E2EE communications</h3><p>Use client-side protocol outputs as input to an application-specific encryption design.</p></article><article class="audience-card"><h3>Wallets / fintech</h3><p>Keep password authentication and local key workflows separate from plaintext password transport.</p></article><article class="audience-card"><h3>Private-data products</h3><p>Connect a password protocol to product-owned records, sessions, and authorization.</p></article><article class="audience-card"><h3>Security-sensitive mobile</h3><p>Evaluate a native integration surface without starting the Rust/bridge path from zero.</p></article></div>
+    </section>
+
+    <section class="section shell" id="commercial">
+      <div class="section-header"><div><div class="section-index">07 / Product model</div><h2>Read the source. Evaluate it. License it when you’re ready to ship.</h2></div><p>Lexxify’s approved direction is public source plus commercial licensing. Exact legal text and commercial terms are still pending.</p></div>
+      <div class="commercial"><article class="commercial-card"><small>01 / Personal</small><h3>Personal / noncommercial</h3><p>Explore the source for personal and noncommercial use under the published terms.</p></article><article class="commercial-card"><small>02 / Evaluate</small><h3>Evaluation</h3><p>Evaluate the source and integration surface before a purchase decision.</p></article><article class="commercial-card"><small>03 / Ship</small><h3>Commercial production</h3><p>Commercial licensing through Lexxify for teams ready to ship.</p></article><article class="commercial-card"><small>04 / Partner</small><h3>Integration / support</h3><p>Talk with Lexxify about integration and support.</p></article></div>
+      <p class="terms-note">Final license text, pricing, and support scope will accompany the published commercial terms.</p>
+    </section>
+
+    <section class="cta shell" id="get-started"><p class="eyebrow">Start the conversation</p><h2>Building OPAQUE authentication into a React Native product?</h2><p>Evaluate the implementation, then talk with Lexxify when you are ready to discuss shipping.</p><span class="button button-muted" aria-disabled="true">Evaluate OPAQUE</span><span class="button button-muted" aria-disabled="true">Talk to Lexxify</span></section>
+  </main>
+  <footer class="footer shell"><span>Lexxify OPAQUE · public-source developer product</span><span>Source · docs · licensing</span></footer>
+</body>
+</html>
